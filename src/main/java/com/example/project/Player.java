@@ -95,7 +95,8 @@ public class Player{
             freq.add(0);
         }
 
-        for (int i = 0; i < allCards.size(); i++){ 
+        for (int i = 0; i < allCards.size(); i++){
+            // incrementing the index of which is the rank of each card 
             int idx = Utility.getRankValue(allCards.get(i).getRank()) - 1;
             freq.set(idx, freq.get(idx) + 1);
         }
@@ -110,6 +111,7 @@ public class Player{
             freq.add(0);
         }
         for (int i = 0; i < allCards.size(); i++) {
+            // incrementing the index of which is the suit of each card
             int idx = Utility.getSuitPos(allCards.get(i).getSuit());
             freq.set(idx, freq.get(idx) + 1);
         }
@@ -117,14 +119,19 @@ public class Player{
         return freq;
     }
 
+    // takes a Arraylist of Cards
     private int highCard(ArrayList<Card> c) {
         int highestCard = Utility.getRankValue(c.get(0).getRank());
-        for (int i = 1; i < c.size(); i++) {
+       // goes through every card in the input 
+       for (int i = 1; i < c.size(); i++) {
             int rankOfCard = Utility.getRankValue(c.get(i).getRank());
+            // if that card has a higher rank, 
+            // set highestCard equal to the card of the higher rank
             if (rankOfCard > highestCard) {
                 highestCard = rankOfCard;
             }
         }
+        // returns the card which has the highest rank in the input
         return highestCard;
     }
 
@@ -133,6 +140,9 @@ public class Player{
         sortAllCards();
         ArrayList<Integer> freq = findRankingFrequency();
         for (int i = 0; i < freq.size(); i++) {
+            // checks to see if the rank frequency list contains a 2
+            // increments count by 1 when that occurs
+            // returning count after iterating through the rank whole frequency list
             if (freq.get(i) == 2) {
                 count++;
             }
@@ -144,6 +154,8 @@ public class Player{
         sortAllCards();
         ArrayList<Integer> freq = findRankingFrequency();
         for (int i = 0; i < freq.size(); i++) {
+            // checks to see if the rank frequency list contains a 3
+            // returns true if a rank of 3 is found
             if (freq.get(i) == 3) {
                 return true;
             }
@@ -165,8 +177,11 @@ public class Player{
 
     public boolean isStraight() {
         sortAllCards();
-        for (int i = 0; i < allCards.size() - 1; i++){
-            if(Utility.getRankValue(allCards.get(i).getRank()) + 1 != Utility.getRankValue(allCards.get(i + 1).getRank())){
+        for (int i = 0; i < allCards.size() - 1; i++){ 
+            // given a sorted list, ,
+            // if the rank value of the current card + 1 is not equal to the rank value of the next card
+            // return false
+            if (Utility.getRankValue(allCards.get(i).getRank()) + 1 != Utility.getRankValue(allCards.get(i + 1).getRank())){
                 return false; 
             }
         }
@@ -176,8 +191,10 @@ public class Player{
     public boolean isFlush() {
         sortAllCards();
         for (int i = 0; i < allCards.size() - 1; i++) {
+            // given a sorted list
+            // if the current card's suit isn't the same as the next card's suit
+            // return false.
             if (allCards.get(i).getSuit() != allCards.get(i + 1).getSuit()) {
-                
                 return false;
             }
         }
@@ -185,6 +202,7 @@ public class Player{
     }
     
     private boolean isRoyalFlush() {
+        // A royal flush has to be both a flush and a straight
         if (!isFlush()) {
             return false;
 
@@ -193,6 +211,7 @@ public class Player{
 
         }
 
+        // A royal flush has to have it's lowest rank (which is first in how my program sorts) be 10
         if (!allCards.get(0).getRank().equals("10")) {
             return false;
         }
