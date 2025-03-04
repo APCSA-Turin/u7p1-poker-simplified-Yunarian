@@ -15,12 +15,13 @@ public class Utility{
         "High Card"
     };
 
-    private static String[] suits  = {"♠","♥","♣", "♦"};
+    private static String[] suits  = {"♠", "♥", "♣", "♦"};
     private static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 
     public static String[] getRanks(){return ranks;}
     public static String[] getSuits(){return suits;}
 
+    // returns the value of the rank of that card
     public static int getRankValue(String rank){
         switch(rank){
             case "2": return 2;
@@ -40,6 +41,18 @@ public class Utility{
         return -1;
     }
 
+    // used to make findSuitFrequency() easier
+    public static int getSuitPos(String suit){
+        switch(suit){
+            case "♠": return 0;
+            case "♥": return 1;
+            case "♣": return 2;
+            case "♦": return 3;
+        }
+        return -1;
+    }
+
+    // returns the ranking of a suit; higher value wins
     public static int getHandRanking(String result){
         switch(result){
             case "Royal Flush": return 11;

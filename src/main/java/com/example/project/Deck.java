@@ -23,11 +23,11 @@ public class Deck{
         
     }
 
-    public  Card drawCard(){
+    public Card drawCard(){
        return new Card("","");
     }
 
-    public  boolean isEmpty(){
+    public boolean isEmpty(){
         return cards.isEmpty();
     }
 
