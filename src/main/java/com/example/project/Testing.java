@@ -19,7 +19,7 @@ public class Testing {
         System.out.println(player.isFlush());
         System.out.println(player.isStraight());
         
-        // System.out.println(player.playHand(communityCards));
-
+        // System.out.println(player.playHand(communityCards));  
+        
     }
 }

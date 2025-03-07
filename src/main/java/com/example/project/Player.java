@@ -120,7 +120,7 @@ public class Player{
     }
 
     // takes a Arraylist of Cards
-    private int highCard(ArrayList<Card> c) {
+    public int highCard(ArrayList<Card> c) {
         int highestCard = Utility.getRankValue(c.get(0).getRank());
        // goes through every card in the input 
        for (int i = 1; i < c.size(); i++) {
